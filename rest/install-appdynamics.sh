@@ -86,9 +86,11 @@ downloadInstallers() {
          ${APPD_LOGIN_URL} 
 
     SSO_SESSIONID=`grep "sso-sessionid" ${APPD_TEMP_DIR}/cookies.txt`
-    if [ ! "$SSO_SESSIONID" ]; then
-      echo "Incorrect Login/Password"
-      exit
+    # There is an issue with sso-sessionid, not a string available under cookies.txt
+    # hence the if condition is disabled temporary fix.
+    #if [ ! "$SSO_SESSIONID" ]; then
+      #echo "Incorrect Login/Password"
+      #exit
     fi
 
     for i in ${!APPD_AGENTS[@]}; do
